@@ -1,4 +1,4 @@
-package junit;
+package junit.step02ExternalResourceRules;
 
 import static org.fest.assertions.Assertions.*;
 import java.io.*;
@@ -6,7 +6,10 @@ import org.junit.*;
 import org.junit.rules.ExternalResource;
 import com.google.common.io.Files;
 
-public class ExternalResourceTest {
+/**
+ * See ListFilesWithStandardRuleTest for a version useing a standard rule.
+ */
+public class ListFilesWithCustomRuleTest {
 	@Rule
 	public TempFolder tempFolder = new TempFolder();
 

@@ -1,9 +1,12 @@
-package junit;
+package junit.step02ExternalResourceRules;
 
 import static org.fest.assertions.Assertions.*;
 import org.junit.*;
 import rules.ConsoleRecorder;
 
+/**
+ * Homemade rule.
+ */
 public class ConsoleRecorderTest {
 	@Rule
 	public ConsoleRecorder console = ConsoleRecorder.recordSystemErr();

@@ -1,4 +1,4 @@
-package junit;
+package junit.step03MethodRule;
 
 import static org.fest.assertions.Assertions.*;
 import java.io.*;
@@ -7,6 +7,10 @@ import org.junit.rules.MethodRule;
 import org.junit.runners.model.*;
 import com.google.common.io.Files;
 
+/**
+ * Same way of using a MethodRule or an ExternalResource Rule. Only the
+ * implementation changes.
+ */
 public class MethodRuleTest {
 	@Rule
 	public TempFolder tempFolder = new TempFolder();

@@ -1,4 +1,4 @@
-package junit;
+package junit.step03MethodRule;
 
 import static org.fest.assertions.Assertions.*;
 import java.util.List;

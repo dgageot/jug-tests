@@ -1,4 +1,4 @@
-package junit;
+package junit.step03MethodRule;
 
 import java.util.concurrent.TimeUnit;
 import org.junit.*;

@@ -2,18 +2,15 @@ package rules;
 
 import static rules.ConsoleRecorder.ConsoleType.*;
 import java.io.*;
-import org.junit.rules.MethodRule;
-import org.junit.runners.model.*;
+import org.junit.rules.ExternalResource;
 
 /**
  * JUnit Rule to record System.out or System.err output.
  */
-public class ConsoleRecorder implements MethodRule {
-	static final Object MAKE_THIS_RULE_THREAD_SAFE = new Object();
-
-	final ByteArrayOutputStream recordedContent = new ByteArrayOutputStream();
-	final PrintStream recordingOutput = new PrintStream(recordedContent);
-	final ConsoleType console;
+public class ConsoleRecorder extends ExternalResource {
+	private final ConsoleType console;
+	private final ByteArrayOutputStream recordedContent = new ByteArrayOutputStream();
+	private final PrintStream recordingOutput = new PrintStream(recordedContent);
 
 	private ConsoleRecorder(ConsoleType recorderType) {
 		console = recorderType;
@@ -27,26 +24,19 @@ public class ConsoleRecorder implements MethodRule {
 		return new ConsoleRecorder(ERR);
 	}
 
-	public String getOutput() {
-		recordingOutput.flush();
-		return recordedContent.toString();
+	@Override
+	protected void before() throws Throwable {
+		console.redirectTo(recordingOutput);
 	}
 
 	@Override
-	public Statement apply(final Statement base, FrameworkMethod method, Object target) {
-		return new Statement() {
-			@Override
-			public void evaluate() throws Throwable {
-				synchronized (MAKE_THIS_RULE_THREAD_SAFE) {
-					console.redirectTo(recordingOutput);
-					try {
-						base.evaluate();
-					} finally {
-						console.restore();
-					}
-				}
-			}
-		};
+	protected void after() {
+		console.restore();
+	}
+
+	public String getOutput() {
+		recordingOutput.flush();
+		return recordedContent.toString();
 	}
 
 	static enum ConsoleType {

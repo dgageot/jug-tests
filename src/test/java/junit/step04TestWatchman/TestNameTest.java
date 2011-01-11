@@ -1,9 +1,12 @@
-package junit;
+package junit.step04TestWatchman;
 
 import org.fest.assertions.Fail;
 import org.junit.*;
 import org.junit.rules.TestName;
 
+/**
+ * The interesting part is in TestWatchman implementation.
+ */
 public class TestNameTest {
 	@Rule
 	public TestName testName = new TestName();

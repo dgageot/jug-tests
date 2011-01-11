@@ -1,11 +1,11 @@
-package junit;
+package junit.step02ExternalResourceRules;
 
 import static org.fest.assertions.Assertions.*;
 import java.io.*;
 import org.junit.*;
 import org.junit.rules.TemporaryFolder;
 
-public class TemporaryFolderTest {
+public class ListFilesWithStandardRuleTest {
 	@Rule
 	public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
