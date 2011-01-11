@@ -7,10 +7,26 @@ import org.junit.rules.ExternalResource;
 import com.google.common.io.Files;
 
 public class ExternalResourceTest {
-	File folder;
-
 	@Rule
-	public ExternalResource createFolder = new ExternalResource() {
+	public TempFolder tempFolder = new TempFolder();
+
+	@Test
+	public void canCountFiles() throws IOException {
+		File folder = tempFolder.getFolder();
+
+		new File(folder, "A.txt").createNewFile();
+		new File(folder, "B.txt").createNewFile();
+
+		assertThat(folder.listFiles()).hasSize(2);
+	}
+
+	static class TempFolder extends ExternalResource {
+		private File folder;
+
+		public File getFolder() {
+			return folder;
+		}
+
 		@Override
 		protected void before() throws IOException {
 			folder = File.createTempFile("folder", "");
@@ -26,13 +42,5 @@ public class ExternalResourceTest {
 				// Ignore
 			}
 		}
-	};
-
-	@Test
-	public void canCountFiles() throws IOException {
-		new File(folder, "A.txt").createNewFile();
-		new File(folder, "B.txt").createNewFile();
-
-		assertThat(folder.listFiles()).hasSize(2);
 	}
 }
