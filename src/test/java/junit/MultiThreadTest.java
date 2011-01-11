@@ -6,15 +6,17 @@ import org.junit.*;
 import rules.RunTestsMultipleTimes;
 import com.google.common.collect.Lists;
 
+// Change to 10 and add System.out.println("Run test");
+// Try with 10000, 100. See if it fails.
+//
 public class MultiThreadTest {
 	@Rule
 	public RunTestsMultipleTimes runTestsMultipleTimes = new RunTestsMultipleTimes(1);
 
 	@Test
 	public void canMakeSureItsThreadSafe() {
-		System.out.println("Run test");
-
 		CodeUnderTest code = new CodeUnderTest();
+
 		int previousSize = code.values().size();
 		code.add("A");
 		code.add("B");
