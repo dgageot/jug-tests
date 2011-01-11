@@ -1,4 +1,4 @@
-package junit.step04TestWatchman;
+package junit.step05TestWatchman;
 
 import org.fest.assertions.Fail;
 import org.junit.*;
