@@ -6,8 +6,8 @@ import org.junit.*;
 import com.google.common.io.Files;
 
 /**
- * See ListFilesWithCustomRuleTest and ListFilesWithStandardRuleTest for versions using JUnit
- * Rules.
+ * See ListFilesWithCustomRuleTest and ListFilesWithStandardRuleTest for
+ * versions using JUnit Rules.
  */
 public class ListFilesTest {
 	private File folder;
@@ -40,5 +40,10 @@ public class ListFilesTest {
 		new File(folder, "B.txt").delete();
 
 		assertThat(folder.listFiles()).hasSize(1);
+	}
+
+	@Ignore
+	public void canDoVeryComplexThings() {
+		// Not implemented yet
 	}
 }
