@@ -2,7 +2,5 @@
 .project
 .settings/
 .DS_Store
-infinitest.args
-infinitest.filters
 target/
 bin/
